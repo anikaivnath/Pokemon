@@ -3,8 +3,8 @@ import React from 'react'
 const App = () => {
   return (
     <div>
-    <div className=' text-center bg'>
-      <p>Explore your Favorite Pokemon Card</p>
+    <div className=' text-center '>
+      <p className='font-serif text-3xl'>Explore your Favorite Pokemon Card</p>
     </div>
 
     </div>
