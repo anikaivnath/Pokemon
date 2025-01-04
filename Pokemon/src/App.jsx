@@ -8,8 +8,8 @@ const App = () => {
       <div className="sticky top-0 z-10 bg-amber-200 p-4 flex items-center justify-between shadow-md">
         <p className="font-serif text-3xl">Explore Your Favorite Pokémon Card</p>
         
-        <div className="flex gap-6 items-center">
-          <p><FontAwesomeIcon icon={faHeart} className="text-3xl text-red-600 cursor-pointer" /></p>
+        <div className="flex gap-6 items-center"> 
+          <FontAwesomeIcon icon={faHeart} className="text-3xl text-red-600 cursor-pointer" />
           <input
             type="text"
             placeholder="Search Pokémon..."
