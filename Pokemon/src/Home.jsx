@@ -52,13 +52,13 @@ const Home = () => {
 
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         {filteredPokemon.map((pokemon, index) => (
-          <div key={index} className="p-4 border rounded-lg hover:bg-gray-200 transition-all">
+          <div key={index} className="p-4 border bg-green-800 rounded-lg hover:bg-green-700 transition-all">
             <img
               src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${index + 1}.png`}
               alt={pokemon.name}
               className="w-48 h-48 mx-auto transform transition-transform duration-300 hover:scale-110"
             />
-            <p className="text-center capitalize text-black">{pokemon.name}</p>
+            <p className="text-center capitalize text-white">{pokemon.name}</p>
 
             <div className="flex justify-between">
               <Link
