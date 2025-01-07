@@ -30,10 +30,10 @@ const Details = () => {
       </div>
       <div className=""> 
 
-      <div className="mb-4 flex flex-row  ">
+      <div className="mb-4   ">
       
         <h2 className="text-2xl font-semibold ">Abilities:</h2>
-        <ul className="ml-4 mt-2">
+        <ul className="">
           {pokemon.abilities.map((ability) => (
             <li key={ability.ability.name} className="capitalize">{ability.ability.name}</li>
           ))}
