@@ -46,11 +46,11 @@ const Home = () => {
   return (
     <div className="">
       <Navbar onSearch={handleSearchChange} />
-      <h1 className="text-2xl font-bold mb-4 text-white">Pokémon List</h1>
+      <h1 className="text-2xl font-bold  text-white">Pokémon List</h1>
 
-      {message && <div className="text-center text-white mb-4">{message}</div>}
+      {message && <div className="text-center text-white pt-4">{message}</div>}
 
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 pt-4 bg-slate-500">
         {filteredPokemon.map((pokemon, index) => (
           <div key={index} className="p-4 border bg-green-800 rounded-lg hover:bg-green-700 transition-all">
             <img
