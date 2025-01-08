@@ -7,6 +7,7 @@ const Home = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [favorites, setFavorites] = useState([]);
   const [message, setMessage] = useState("");
+  const [notFound, setNotFound] = useState(false);
 
   useEffect(() => {
     fetch("https://pokeapi.co/api/v2/pokemon?limit=50")
@@ -48,8 +49,9 @@ const Home = () => {
       <Navbar onSearch={handleSearchChange} />
       <h1 className="text-2xl font-bold  text-white bg-slate-500 text-center ">Pokémon List</h1>
       
+      
 
-      {message && <div className="text-center text-white ">{message}</div>}
+      {message && <div className="text-center text-black ">{message}</div>}
 
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4  bg-slate-500">
         {filteredPokemon.map((pokemon, index) => (
