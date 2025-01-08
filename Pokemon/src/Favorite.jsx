@@ -27,13 +27,13 @@ const Favorites = () => {
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {favorites.map((pokemonName, index) => (
-            <div key={index} className="p-4 bg-white rounded-lg shadow-md transition-transform hover:scale-105">
+            <div key={index} className="p-4 bg-green-800 hover:bg-green-700 rounded-lg shadow-md transition-transform hover:scale-105">
               <img
                 src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${index + 1}.png`}
                 alt={pokemonName}
                 className="w-full max-w-[180px] md:max-w-[200px] mx-auto"
               />
-              <p className="text-center capitalize text-gray-700 mt-2 text-lg">{pokemonName}</p>
+              <p className="text-center capitalize text-white mt-2 text-lg">{pokemonName}</p>
 
               <div className="flex justify-between">
                 <Link
