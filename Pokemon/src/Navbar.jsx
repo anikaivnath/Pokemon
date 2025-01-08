@@ -9,7 +9,7 @@ const Navbar = ({ onSearch }) => {
     onSearch(event.target.value); 
   };
   return (
-    <div className="sticky top-0 bg-gray-800 text-white p-4 z-50 shadow-md">
+    <div className="sticky top-0 bg-gray-800 text-white p-4 z-50 shadow-lg">
       <div className="flex justify-between items-center">
         <Link to="/" className="text-xl font-bold">Pokémon Explorer</Link>
         <div className="flex space-x-4">
