@@ -1,16 +1,16 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import Navbar from "./Navbar";
+import Navbar from "../components/Navbar";
 
 const Home = () => {
   const [pokemonList, setPokemonList] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [favorites, setFavorites] = useState([]);
-  const [message, setMessage] = useState("");
+  const [notFound, setNotFound] = useState(false);
 
   useEffect(() => {
     fetch("https://pokeapi.co/api/v2/pokemon?limit=50")
-      .then((response) => response.json()) 
+      .then((response) => response.json())
       .then((data) => setPokemonList(data.results));
   }, []);
 
@@ -30,50 +30,53 @@ const Home = () => {
 
   const handleSearchChange = (query) => {
     setSearchQuery(query.toLowerCase());
-    setMessage("");  // Clear message when typing
+
+    // Check if search results exist
+    const filteredResults = pokemonList.filter((pokemon) =>
+      pokemon.name.toLowerCase().includes(query.toLowerCase())
+    );
+
+    setNotFound(filteredResults.length === 0 && query !== "");
   };
 
   const filteredPokemon = pokemonList.filter((pokemon) =>
     pokemon.name.toLowerCase().includes(searchQuery)
   );
 
-  useEffect(() => {
-    if (filteredPokemon.length === 0 && searchQuery !== "") {
-      setMessage("No Pokémon found with that name.");
-    }
-  }, [filteredPokemon, searchQuery]);
-
   return (
-    <div className="">
+    <div className="p-6 bg-gradient-to-r from-teal-400 to-blue-500 min-h-screen">
       <Navbar onSearch={handleSearchChange} />
-      <h1 className="text-2xl font-bold  text-white bg-slate-500 text-center ">Pokémon List</h1>
+      <h1 className="text-2xl font-bold mb-4 text-white text-center">
+        Pokémon List
+      </h1>
+      {notFound && (
+        <div className="text-center text-red-500 font-bold text-lg my-4">
+          No Pokémon found with that name.
+        </div>
+      )}
 
-      {message && <div className="text-center text-white ">{message}</div>}
-
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4  bg-slate-500">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         {filteredPokemon.map((pokemon, index) => (
-          <div key={index} className=" mt-2 p-4 border bg-green-800 rounded-lg hover:bg-green-700 transition-all">
+          <div key={index} className="p-4 border rounded-lg bg-white shadow-md transition-transform hover:scale-105">
             <img
               src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${index + 1}.png`}
               alt={pokemon.name}
-              className="w-48 h-48 mx-auto transform transition-transform duration-300 hover:scale-110"
+              className="w-full max-w-[180px] md:max-w-[200px] mx-auto"
             />
-            <p className="text-center capitalize text-white">{pokemon.name}</p>
+            <p className="text-center capitalize text-gray-700 mt-2 text-lg">{pokemon.name}</p>
 
             <div className="flex justify-between">
               <Link
                 to={`/pokemon/${pokemon.name}`}
-                className="bg-blue-800 text-white px-4 py-2 rounded mt-2"
+                className="bg-blue-500 text-white px-4 py-2 rounded mt-2 text-sm"
               >
                 View
               </Link>
               <button
                 onClick={() => toggleFavorite(pokemon.name)}
                 className={`${
-                  favorites.includes(pokemon.name)
-                    ? "bg-red-500"
-                    : "bg-yellow-500"
-                } text-white px-4 py-2 rounded mt-2`}
+                  favorites.includes(pokemon.name) ? "bg-red-500" : "bg-yellow-500"
+                } text-white px-4 py-2 rounded mt-2 text-sm`}
               >
                 {favorites.includes(pokemon.name) ? "Unfavorite" : "Favorite"}
               </button>
