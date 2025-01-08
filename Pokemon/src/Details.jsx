@@ -14,7 +14,7 @@ const Details = () => {
   if (!pokemon) return <div>Loading...</div>;
 
   return (
-    <div className="w-80 text-center m-auto mt-8">
+    <div className="p-6 bg-gradient-to-r from-green-500 to-blue-600 min-h-screen">
    
       <div className="flex flex-row justify-center ">
         <img
