@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import Navbar from ".//Navbar";
+
 
 const Favorites = () => {
   const [favorites, setFavorites] = useState([]);
@@ -18,7 +18,6 @@ const Favorites = () => {
 
   return (
     <div className="p-6 bg-gradient-to-r from-purple-500 to-indigo-600 min-h-screen">
-      <Navbar />
       <h1 className="text-2xl font-bold text-white text-center mb-4">
         Favorite Pokémon
       </h1>

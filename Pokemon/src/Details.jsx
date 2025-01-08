@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import Navbar from "./Navbar";
 
 const Details = () => {
   const { name } = useParams();
@@ -11,48 +12,45 @@ const Details = () => {
       .then((data) => setPokemon(data));
   }, [name]);
 
-  if (!pokemon) return <div>Loading...</div>;
+  if (!pokemon) {
+    return (
+      <div className="flex justify-center items-center h-screen bg-gray-200">
+        <p className="text-gray-700 text-xl">Loading...</p>
+      </div>
+    );
+  }
 
   return (
     <div className="p-6 bg-gradient-to-r from-green-500 to-blue-600 min-h-screen">
-   
-      <div className="flex flex-row justify-center ">
+      <div className="max-w-2xl mx-auto bg-white p-6 rounded-lg shadow-lg">
         <img
           src={pokemon.sprites.front_default}
           alt={pokemon.name}
-          className="w-64 h-64"
+          className="w-40 mx-auto"
         />
+        <h1 className="text-2xl font-bold text-center capitalize mt-4">{pokemon.name}</h1>
         
-      </div>
-  
-      <div>
-      <h1 className="text-3xl font-bold mb-4 text-center ">{pokemon.name.toUpperCase()}</h1>
-      </div>
-      <div className=""> 
+        <div className="mt-4">
+          <h2 className="text-lg font-semibold">Abilities:</h2>
+          <ul className="list-disc list-inside">
+            {pokemon.abilities.map((ability, index) => (
+              <li key={index} className="capitalize text-gray-700">{ability.ability.name}</li>
+            ))}
+          </ul>
+        </div>
 
-      <div className="mb-4   ">
-      
-        <h2 className="text-2xl font-semibold ">Abilities:</h2>
-        <ul className="">
-          {pokemon.abilities.map((ability) => (
-            <li key={ability.ability.name} className="capitalize">{ability.ability.name}</li>
-          ))}
-        </ul>
-      </div>
-
-      <div>
-        <h2 className="text-2xl font-semibold">Stats:</h2>
-        <ul>
-          {pokemon.stats.map((stat) => (
-            <li key={stat.stat.name} className="capitalize">
-              {stat.stat.name}: {stat.base_stat}
-            </li>
-          ))}
-        </ul>
+        <div className="mt-4">
+          <h2 className="text-lg font-semibold">Types:</h2>
+          <div className="flex gap-2">
+            {pokemon.types.map((type, index) => (
+              <span key={index} className="bg-gray-300 px-3 py-1 rounded-full capitalize">
+                {type.type.name}
+              </span>
+            ))}
+          </div>
+        </div>
       </div>
     </div>
-    </div>
-       
   );
 };
 
