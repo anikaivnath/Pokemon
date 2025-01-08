@@ -46,13 +46,13 @@ const Home = () => {
   return (
     <div className="">
       <Navbar onSearch={handleSearchChange} />
-      <h1 className="text-2xl font-bold  text-white">Pokémon List</h1>
+      <h1 className="text-2xl font-bold  text-white bg-slate-500 text-center ">Pokémon List</h1>
 
       {message && <div className="text-center text-white ">{message}</div>}
 
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4  bg-slate-500">
         {filteredPokemon.map((pokemon, index) => (
-          <div key={index} className="p-4 border bg-green-800 rounded-lg hover:bg-green-700 transition-all">
+          <div key={index} className=" mt-2 p-4 border bg-green-800 rounded-lg hover:bg-green-700 transition-all">
             <img
               src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${index + 1}.png`}
               alt={pokemon.name}
@@ -63,7 +63,7 @@ const Home = () => {
             <div className="flex justify-between">
               <Link
                 to={`/pokemon/${pokemon.name}`}
-                className="bg-blue-500 text-white px-4 py-2 rounded mt-2"
+                className="bg-blue-800 text-white px-4 py-2 rounded mt-2"
               >
                 View
               </Link>
